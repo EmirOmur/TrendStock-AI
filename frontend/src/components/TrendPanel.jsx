@@ -1,51 +1,63 @@
+// Product-level market context panel — dark theme.
+// Shows competitor pricing, trend signals, supplier details for the selected product.
+
 export default function TrendPanel({ product }) {
   if (!product) return null;
 
-  const trendColor = product.trendChange > 0 ? 'text-green-600' : 'text-red-600';
-  const priceColor = product.competitorPriceChange < 0 ? 'text-red-600' : 'text-green-600';
+  const trendPositive = product.trendChange > 0;
+  const priceNegative = product.competitorPriceChange < -5;
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-      <h3 className="text-sm font-semibold text-gray-700 mb-3">Market Signals</h3>
+    <div className="rounded-xl border border-slate-800 bg-slate-900 p-4">
+      <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
+        🏪 Product Context
+      </h3>
 
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         <Row
           label="Search Trend"
-          value={`${product.trendChange > 0 ? '+' : ''}${product.trendChange}%`}
-          valueClass={trendColor}
+          value={`${trendPositive ? '+' : ''}${product.trendChange}%`}
+          valueClass={trendPositive ? 'text-cyan-400' : 'text-red-400'}
         />
         <Row
           label="Competitor Price"
           value={`${product.competitorPriceChange > 0 ? '+' : ''}${product.competitorPriceChange}%`}
-          valueClass={priceColor}
-          hint={product.competitorPriceChange < -5 ? 'Aggressive undercutting' : undefined}
+          valueClass={priceNegative ? 'text-red-400' : 'text-slate-300'}
+          hint={priceNegative ? 'Aggressive undercutting detected' : undefined}
         />
         <Row
           label="Your Price"
           value={`$${product.price}`}
           sub={product.price !== product.previousPrice ? `was $${product.previousPrice}` : undefined}
         />
-        <Row label="Profit Margin" value={`${product.profitMargin}%`}
-          valueClass={product.profitMargin < 20 ? 'text-amber-600 font-semibold' : 'text-gray-700'}
+        <Row
+          label="Profit Margin"
+          value={`${product.profitMargin}%`}
+          valueClass={product.profitMargin < 20 ? 'text-amber-400 font-bold' : 'text-slate-300'}
+          hint={product.profitMargin < 20 ? 'Below 20% threshold' : undefined}
         />
-        <div className="pt-2 border-t border-gray-100">
-          <Row label="Supplier Country" value={product.supplierCountry} />
+
+        <div className="pt-2 border-t border-slate-800 space-y-2.5">
+          <Row label="Supplier" value={product.supplierCountry} />
           <Row label="Lead Time" value={`${product.supplierLeadTimeDays} days`} />
-          <Row label="Daily Sales Avg" value={`${product.avgDailySales} units/day`} />
+          <Row label="Avg Daily Sales" value={`${product.avgDailySales} units/day`} />
+          <Row label="Stock Remaining" value={`${product.currentStock} units`}
+            valueClass={product.riskMetrics?.isStockoutRisk ? 'text-red-400 font-bold' : 'text-slate-300'}
+          />
         </div>
       </div>
     </div>
   );
 }
 
-function Row({ label, value, valueClass = 'text-gray-700', hint, sub }) {
+function Row({ label, value, valueClass = 'text-slate-300', hint, sub }) {
   return (
-    <div className="flex items-center justify-between text-sm">
-      <span className="text-gray-500">{label}</span>
+    <div className="flex items-start justify-between text-xs gap-2">
+      <span className="text-slate-500 flex-shrink-0">{label}</span>
       <div className="text-right">
         <span className={`font-medium ${valueClass}`}>{value}</span>
-        {hint && <p className="text-xs text-red-400">{hint}</p>}
-        {sub && <p className="text-xs text-gray-400">{sub}</p>}
+        {hint && <p className="text-xs text-red-400/80 mt-0.5">{hint}</p>}
+        {sub  && <p className="text-xs text-slate-600 mt-0.5">{sub}</p>}
       </div>
     </div>
   );

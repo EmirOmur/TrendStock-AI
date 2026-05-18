@@ -8,3 +8,6 @@ export const fetchProductById = (id) => apiClient.get(`/products/${id}`);
 
 /** Fetch all products with pre-calculated risk scores, sorted by risk */
 export const fetchAlerts = () => apiClient.get('/alerts');
+
+/** Fetch aggregated dashboard KPI overview */
+export const fetchOverview = () => apiClient.get('/overview');
