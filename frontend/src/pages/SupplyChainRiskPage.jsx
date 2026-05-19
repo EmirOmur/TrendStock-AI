@@ -8,6 +8,7 @@ import SectionCard        from '../components/SectionCard.jsx';
 import ChartCard          from '../components/ChartCard.jsx';
 import StatusBadge        from '../components/StatusBadge.jsx';
 import ExplainabilityPanel from '../components/ExplainabilityPanel.jsx';
+import { useLanguage }    from '../context/LanguageContext.jsx';
 import { getSupplyChainRisks } from '../api/supplyChainApi.js';
 
 const SEV_COLORS   = { high: '#ef4444', medium: '#f59e0b', low: '#10b981' };

@@ -365,11 +365,11 @@ export const translations = {
 
   tr: {
     // ── Navigation ───────────────────────────────────────────────
-    dashboard:       'Panel',
+    dashboard:       'Kontrol Paneli',
     products:        'Ürünler',
     trendRadar:      'Trend Radarı',
     newsMonitor:     'Haber Takibi',
-    inventory:       'Stok Zekası',
+    inventory:       'Akıllı Stok Yönetimi',
     dynamicPricing:  'Dinamik Fiyatlandırma',
     fintechActions:  'Finansal Aksiyonlar',
     supplyChain:     'Tedarik Zinciri Riski',
@@ -449,7 +449,7 @@ export const translations = {
     demoStep1Page:   'Trend Radarı',
     demoStep2Title:  'Stok Riski Bulundu',
     demoStep2Desc:   '72 birimlik mevcut stok 6 günde tükeniyor — tedarikçi teslimatından 4 gün önce. 450 birim sipariş verilmeli.',
-    demoStep2Page:   'Stok Zekası',
+    demoStep2Page:   'Akıllı Stok Yönetimi',
     demoStep3Title:  'Fiyat Güncellemesi Önerildi',
     demoStep3Desc:   'Rakip ortalaması ₺1.349. Talep esnekliği, minimum kayıpla ₺1.389\'a (+%7) fiyat artışını destekliyor.',
     demoStep3Page:   'Dinamik Fiyatlandırma',
