@@ -1,14 +1,38 @@
-export default function ErrorBanner({ message }) {
+import { useLanguage } from '../context/LanguageContext.jsx';
+
+export default function ErrorBanner({ message, onRetry }) {
+  const { t } = useLanguage();
+
+  const isGemini  = message && (message.includes('quota') || message.includes('RESOURCE_EXHAUSTED') || message.includes('429') || message.includes('Gemini'));
+  const isBackend = message && (message.includes('backend') || message.includes('ECONNREFUSED') || message.includes('Network') || message.includes('Backend') || message.includes('5001'));
+
+  const title   = isGemini  ? t('errorGeminiTitle')
+                : isBackend ? t('errorBackendTitle')
+                : t('errorGenericTitle');
+
+  const friendly = isGemini  ? t('errorGeminiMsg')
+                 : isBackend ? t('errorBackendMsg')
+                 : t('errorGenericMsg');
+
   return (
-    <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-6 mx-auto max-w-lg mt-10">
+    <div className="rounded-xl border border-red-500/30 bg-red-950/20 p-5 mx-auto max-w-xl mt-8">
       <div className="flex items-start gap-3">
-        <span className="text-red-400 text-xl mt-0.5">⚠️</span>
-        <div>
-          <p className="text-red-400 font-semibold text-sm">Connection Error</p>
-          <p className="text-red-300/70 text-xs mt-1 leading-relaxed">{message}</p>
-          <div className="mt-3 rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 font-mono text-xs text-slate-400">
-            cd backend &amp;&amp; npm run dev
-          </div>
+        <span className="text-xl mt-0.5 shrink-0">{isGemini ? '🤖' : '⚠️'}</span>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-semibold text-red-300">{title}</p>
+          <p className="text-xs text-red-300/70 mt-1 leading-relaxed">{friendly}</p>
+          {isBackend && (
+            <div className="mt-2 rounded-lg bg-slate-800 border border-slate-700 px-3 py-1.5 font-mono text-xs text-slate-400">
+              cd backend &amp;&amp; npm run dev
+            </div>
+          )}
+          {onRetry && (
+            <button onClick={onRetry}
+              className="mt-3 px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs text-slate-300
+                         hover:bg-slate-700 hover:text-slate-100 transition-colors">
+              ↻ {t('retry')}
+            </button>
+          )}
         </div>
       </div>
     </div>

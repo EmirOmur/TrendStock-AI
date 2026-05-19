@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import SectionCard from '../components/SectionCard.jsx';
+import { useLanguage } from '../context/LanguageContext.jsx';
 
 const INTEGRATIONS = [
   { id: 'gemini',    icon: '🤖', name: 'Google Gemini',       description: 'AI product analysis via gemini-2.0-flash', status: 'connected',    statusColor: 'text-green-400' },
@@ -22,6 +23,7 @@ const defaultToggles = {
 };
 
 export default function SettingsPage() {
+  const { t }                 = useLanguage();
   const [toggles, setToggles] = useState(defaultToggles);
   const [saved, setSaved]     = useState(false);
 
@@ -39,7 +41,7 @@ export default function SettingsPage() {
     <div className="space-y-5 max-w-4xl">
 
       {/* ── AI Configuration ──────────────────────────────────────── */}
-      <SectionCard title="AI Configuration" description="Gemini model settings and fallback behaviour">
+      <SectionCard title={t('aiConfiguration')} description={t('geminiSettings')}>
         <div className="space-y-4">
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
@@ -60,14 +62,14 @@ export default function SettingsPage() {
 
           <div className="space-y-3 pt-1">
             <Toggle
-              label="Enable Gemini Analysis"
-              description="Run AI analysis on product risk scores"
+              label={t('enableGemini')}
+              description={t('enableGeminiDesc')}
               checked={toggles.geminiAnalysis}
               onChange={() => handleToggle('geminiAnalysis')}
             />
             <Toggle
-              label="Fallback Mode"
-              description="Show deterministic recommendations when Gemini quota is exceeded"
+              label={t('fallbackMode')}
+              description={t('fallbackModeDesc')}
               checked={toggles.fallbackMode}
               onChange={() => handleToggle('fallbackMode')}
             />
@@ -76,29 +78,29 @@ export default function SettingsPage() {
       </SectionCard>
 
       {/* ── Alert Preferences ─────────────────────────────────────── */}
-      <SectionCard title="Alert Preferences" description="Configure which events trigger notifications">
+      <SectionCard title={t('alertPreferences')} description="Configure which events trigger notifications">
         <div className="space-y-3">
           <Toggle
-            label="Stockout Alerts"
-            description="Notify when stock drops below supplier lead time"
+            label={t('stockoutAlertsToggle')}
+            description={t('stockoutAlertsDesc')}
             checked={toggles.stockoutAlerts}
             onChange={() => handleToggle('stockoutAlerts')}
           />
           <Toggle
-            label="Trend Opportunity Alerts"
-            description="Notify when search trend diverges from sales trajectory"
+            label={t('trendAlerts')}
+            description={t('trendAlertsDesc')}
             checked={toggles.trendAlerts}
             onChange={() => handleToggle('trendAlerts')}
           />
           <Toggle
-            label="Price Pressure Alerts"
-            description="Notify when competitor price changes exceed 5%"
+            label={t('priceAlerts')}
+            description={t('priceAlertsDesc')}
             checked={toggles.priceAlerts}
             onChange={() => handleToggle('priceAlerts')}
           />
           <Toggle
-            label="Email Notifications"
-            description="Send daily risk digest to your registered email"
+            label={t('emailAlerts')}
+            description={t('emailAlertsDesc')}
             checked={toggles.emailAlerts}
             onChange={() => handleToggle('emailAlerts')}
           />
@@ -106,17 +108,17 @@ export default function SettingsPage() {
       </SectionCard>
 
       {/* ── Dashboard Preferences ─────────────────────────────────── */}
-      <SectionCard title="Dashboard Preferences" description="Display and refresh settings">
+      <SectionCard title={t('dashboardPreferences')} description="Display and refresh settings">
         <div className="space-y-3">
           <Toggle
-            label="Dark Mode"
-            description="Use dark theme across the entire dashboard"
+            label={t('darkMode')}
+            description={t('darkModeDesc')}
             checked={toggles.darkMode}
             onChange={() => handleToggle('darkMode')}
           />
           <Toggle
-            label="Auto Refresh"
-            description="Automatically refresh data every 5 minutes"
+            label={t('autoRefresh')}
+            description={t('autoRefreshDesc')}
             checked={toggles.autoRefresh}
             onChange={() => handleToggle('autoRefresh')}
           />
@@ -124,7 +126,7 @@ export default function SettingsPage() {
       </SectionCard>
 
       {/* ── Integration Status ────────────────────────────────────── */}
-      <SectionCard title="Integration Status" description="Connected services and data sources">
+      <SectionCard title={t('integrationStatus')} description="Connected services and data sources">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {INTEGRATIONS.map((int) => (
             <div
@@ -145,7 +147,7 @@ export default function SettingsPage() {
       </SectionCard>
 
       {/* ── Risk Score Thresholds ─────────────────────────────────── */}
-      <SectionCard title="Risk Score Thresholds" description="How risk levels are calculated from score components">
+      <SectionCard title={t('riskScoreThresholds')} description="How risk levels are calculated from score components">
         <div className="space-y-2 text-xs">
           {[
             { range: '70 – 100', level: 'HIGH',   color: 'text-red-400',   factors: 'STOCKOUT_RISK (+30), SALES_DROP (+25), TREND_DIVERGENCE (+20), PRICE_PRESSURE (+15), LOW_MARGIN (+10)' },
@@ -164,7 +166,7 @@ export default function SettingsPage() {
       </SectionCard>
 
       {/* ── About ─────────────────────────────────────────────────── */}
-      <SectionCard title="About TrendStock AI">
+      <SectionCard title={t('aboutTrendStock')}>
         <div className="text-xs text-slate-500 space-y-1">
           <p>Version 1.0.0 · Hackathon MVP</p>
           <p>Built with React 18 · Vite · Tailwind CSS · Recharts · Google Gemini</p>
@@ -180,10 +182,10 @@ export default function SettingsPage() {
           className="px-5 py-2 rounded-lg bg-cyan-600 text-white text-sm font-semibold
                      hover:bg-cyan-500 active:bg-cyan-700 transition-colors"
         >
-          Save Preferences
+          {t('savePreferences')}
         </button>
         {saved && (
-          <span className="text-xs text-green-400 font-medium">✓ Saved successfully</span>
+          <span className="text-xs text-green-400 font-medium">{t('savedSuccessfully')}</span>
         )}
       </div>
     </div>

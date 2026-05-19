@@ -4,6 +4,7 @@ import FilterBar     from '../components/FilterBar.jsx';
 import SectionCard   from '../components/SectionCard.jsx';
 import LoadingSpinner from '../components/LoadingSpinner.jsx';
 import ErrorBanner   from '../components/ErrorBanner.jsx';
+import { useLanguage } from '../context/LanguageContext.jsx';
 import { fetchMarketSignals } from '../api/marketSignalApi.js';
 
 const OPPORTUNITY_COLORS = {
@@ -28,6 +29,7 @@ const CONFIDENCE_COLORS = {
 };
 
 export default function TrendRadarPage() {
+  const { t }                  = useLanguage();
   const [signals, setSignals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState(null);
@@ -96,7 +98,7 @@ export default function TrendRadarPage() {
     <div className="space-y-5">
 
       {/* ── Bar chart ─────────────────────────────────────────────── */}
-      <SectionCard title="Trend Change Comparison" description="% search volume growth across all tracked keywords">
+      <SectionCard title={t('trendChangeComparison')} description={t('trendChartDesc')}>
         <div className="h-44">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData} margin={{ top: 4, right: 8, left: -20, bottom: 0 }}>
@@ -127,16 +129,16 @@ export default function TrendRadarPage() {
       <FilterBar
         searchValue={search}
         onSearchChange={setSearch}
-        searchPlaceholder="Search keywords…"
+        searchPlaceholder={t('searchKeywords')}
         filters={[
           {
             key: 'category',
-            label: 'Category',
+            label: t('categoryFilter'),
             options: categories.map((c) => ({ value: c, label: c })),
           },
           {
             key: 'opportunity',
-            label: 'Opportunity',
+            label: t('opportunityFilter'),
             options: [
               { value: 'HIGH',   label: 'HIGH' },
               { value: 'MEDIUM', label: 'MEDIUM' },
@@ -191,7 +193,7 @@ export default function TrendRadarPage() {
           })}
           {filtered.length === 0 && (
             <div className="col-span-2 rounded-xl border border-dashed border-slate-800 p-10 text-center">
-              <p className="text-sm text-slate-500">No signals match your filters.</p>
+              <p className="text-sm text-slate-500">{t('noSignalsMatch')}</p>
             </div>
           )}
         </div>
@@ -206,18 +208,18 @@ export default function TrendRadarPage() {
               <div className="space-y-3 text-xs">
                 <div className="grid grid-cols-2 gap-2">
                   <div className="rounded-lg bg-slate-800/60 p-2">
-                    <p className="text-slate-600 mb-0.5">Trend Change</p>
+                    <p className="text-slate-600 mb-0.5">{t('trendChangeLabel')}</p>
                     <p className="font-bold text-green-400 text-sm">+{selected.trendChange}%</p>
                   </div>
                   <div className="rounded-lg bg-slate-800/60 p-2">
-                    <p className="text-slate-600 mb-0.5">Opportunity</p>
+                    <p className="text-slate-600 mb-0.5">{t('opportunity')}</p>
                     <p className={`font-bold ${OPPORTUNITY_COLORS[selected.opportunityLevel]?.text}`}>
                       {selected.opportunityLevel}
                     </p>
                   </div>
                   {selected.confidence && (
                     <div className="rounded-lg bg-slate-800/60 p-2">
-                      <p className="text-slate-600 mb-0.5">Confidence</p>
+                      <p className="text-slate-600 mb-0.5">{t('confidence')}</p>
                       <p className={`font-bold ${CONFIDENCE_COLORS[selected.confidence]}`}>
                         {selected.confidence}
                       </p>
@@ -232,20 +234,20 @@ export default function TrendRadarPage() {
                 </div>
 
                 <div>
-                  <p className="text-slate-600 uppercase tracking-widest font-semibold mb-1.5">Signal Analysis</p>
+                  <p className="text-slate-600 uppercase tracking-widest font-semibold mb-1.5">{t('signalAnalysis')}</p>
                   <p className="text-slate-300 leading-relaxed">{selected.explanation}</p>
                 </div>
 
                 {selected.suggestedAction && (
                   <div className="rounded-lg bg-cyan-500/10 border border-cyan-500/20 p-2.5">
-                    <p className="font-semibold text-cyan-400 mb-1">🎯 Suggested Action</p>
+                    <p className="font-semibold text-cyan-400 mb-1">{t('suggestedActionLabel')}</p>
                     <p className="text-cyan-300/80 leading-relaxed">{selected.suggestedAction}</p>
                   </div>
                 )}
 
                 {selected.relatedProducts?.length > 0 && (
                   <div>
-                    <p className="text-slate-600 uppercase tracking-widest font-semibold mb-1">Related Products</p>
+                    <p className="text-slate-600 uppercase tracking-widest font-semibold mb-1">{t('relatedProducts')}</p>
                     <div className="flex flex-wrap gap-1.5">
                       {selected.relatedProducts.map((id) => (
                         <span key={id} className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-400">
@@ -259,7 +261,7 @@ export default function TrendRadarPage() {
             </SectionCard>
           ) : (
             <div className="rounded-xl border border-dashed border-slate-800 p-10 text-center">
-              <p className="text-xs text-slate-600">Click a signal card to view details.</p>
+              <p className="text-xs text-slate-600">{t('clickSignalDetail')}</p>
             </div>
           )}
         </div>

@@ -1,0 +1,262 @@
+export const mockWeeklyReport = {
+  id: 'report_2026_w20',
+  period: {
+    start: '2026-05-13',
+    end: '2026-05-19',
+    weekNumber: 20,
+    year: 2026,
+  },
+  generatedAt: '2026-05-19T08:30:00Z',
+  generatedBy: 'TrendStock AI v2.0 + Gemini 2.0 Flash',
+
+  executiveSummary: 'This week marked a significant inflection point for the portfolio. The wireless earbuds product entered a high-demand trend window driven by social media signals (+42% trend increase), while inventory is critically low at 6 days remaining. Immediate action is required: execute the ₺85,000 micro-credit offer to restock 450 units and apply a 7% price increase. Expected ROI is 24%. On the supply chain front, Asian port congestion and coffee crop damage require defensive hedging. Total portfolio opportunity this week is estimated at ₺485,000 versus ₺312,500 in risk exposure.',
+
+  financialSummary: {
+    totalRevenue7d: 542800,
+    totalRevenuePrev7d: 498400,
+    revenueChange: 8.9,
+    revenueAtRisk: 312500,
+    revenueOpportunity: 485000,
+    netOpportunity: 172500,
+    totalFinancingRequired: 342000,
+    portfolioROIIfActionsExecuted: 19.2,
+    avgProfitMargin: 30.4,
+    topRevenueProduct: 'SoundPulse Pro Wireless Earbuds',
+    topRevenueAmount: 108756,
+  },
+
+  trendSummary: {
+    totalTrendSignals: 12,
+    highMomentumSignals: 4,
+    topOpportunity: {
+      product: 'SoundPulse Pro Wireless Earbuds',
+      trendChange: 42,
+      predictedDemandIncrease: 42,
+      timeWindow: '14 days',
+    },
+    categoryMomentum: [
+      { category: 'Electronics', score: 78, trend: 'up' },
+      { category: 'Gaming', score: 72, trend: 'up' },
+      { category: 'Sports', score: 65, trend: 'up' },
+      { category: 'Beauty', score: 61, trend: 'up' },
+      { category: 'Home', score: 48, trend: 'stable' },
+      { category: 'Coffee', score: 32, trend: 'down' },
+    ],
+  },
+
+  inventorySummary: {
+    totalProducts: 25,
+    criticalStockout: 3,
+    highRisk: 7,
+    mediumRisk: 8,
+    lowRisk: 7,
+    totalReorderValue: 342000,
+    avgDaysUntilStockout: 11.4,
+    mostUrgent: {
+      product: 'SoundPulse Pro Wireless Earbuds',
+      daysUntilStockout: 6,
+      reorderQty: 450,
+      reorderCost: 85000,
+    },
+  },
+
+  pricingSummary: {
+    totalRecommendations: 10,
+    increaseRecommendations: 6,
+    decreaseRecommendations: 4,
+    potentialRevenueImpact: 142700,
+    topPricingAction: {
+      product: 'SoundPulse Pro Wireless Earbuds',
+      currentPrice: 1299,
+      suggestedPrice: 1389,
+      increasePercent: 6.9,
+      expectedImpact: 32400,
+    },
+  },
+
+  fintechSummary: {
+    totalOffers: 8,
+    totalAvailableCapital: 622000,
+    highPriorityOffers: 2,
+    avgEstimatedROI: 21.5,
+    topOffer: {
+      title: 'Short-Term Micro-Credit',
+      amount: 85000,
+      roi: 24,
+      product: 'SoundPulse Pro Wireless Earbuds',
+      termMonths: 3,
+    },
+  },
+
+  supplyChainSummary: {
+    totalRisks: 8,
+    highSeverity: 3,
+    mediumSeverity: 3,
+    lowSeverity: 2,
+    totalEstimatedImpact: 626000,
+    topRisk: {
+      title: 'Asian Port Shipping Delays',
+      severity: 'high',
+      impact: 185000,
+      affectedProducts: 4,
+    },
+  },
+
+  topRisks: [
+    {
+      rank: 1,
+      title: 'Wireless Earbuds Stockout in 6 Days',
+      category: 'Inventory',
+      impact: '₺89,000 missed revenue',
+      urgency: 'critical',
+      action: 'Restock 450 units via micro-credit',
+    },
+    {
+      rank: 2,
+      title: 'Asian Port Shipping Delays (8-14 days)',
+      category: 'Supply Chain',
+      impact: '₺185,000 at risk',
+      urgency: 'high',
+      action: 'Upgrade to air freight for critical items',
+    },
+    {
+      rank: 3,
+      title: 'Colombian Coffee Crop Damage (-18%)',
+      category: 'Supply Chain',
+      impact: '₺54,000 cost increase',
+      urgency: 'high',
+      action: 'Lock in forward supply contracts immediately',
+    },
+    {
+      rank: 4,
+      title: 'TRY/USD Depreciation -4.8%',
+      category: 'Currency',
+      impact: '₺72,000 margin erosion',
+      urgency: 'medium',
+      action: 'Hedge currency exposure via forward contracts',
+    },
+    {
+      rank: 5,
+      title: 'Semiconductor Shortage Resurging',
+      category: 'Supply Chain',
+      impact: '₺220,000 at risk Q3',
+      urgency: 'medium',
+      action: 'Place 6-month forward orders for chips',
+    },
+  ],
+
+  topOpportunities: [
+    {
+      rank: 1,
+      title: 'Wireless Earbuds Demand Surge +42%',
+      category: 'Trend + Pricing',
+      expectedValue: '₺126,000 in 30 days',
+      confidence: 94,
+      action: 'Micro-credit + restock + price increase',
+    },
+    {
+      rank: 2,
+      title: 'Gaming Category Holiday Pre-Stock',
+      category: 'Inventory',
+      expectedValue: '₺89,000 in 45 days',
+      confidence: 78,
+      action: 'Pre-stock gaming peripherals now',
+    },
+    {
+      rank: 3,
+      title: 'K-Beauty Trend Capitalisation',
+      category: 'Trend + Inventory',
+      expectedValue: '₺62,000 in 60 days',
+      confidence: 81,
+      action: 'Restock serum + launch marketing campaign',
+    },
+    {
+      rank: 4,
+      title: 'USB-C Hub Price Optimization',
+      category: 'Pricing',
+      expectedValue: '₺18,500 revenue uplift',
+      confidence: 85,
+      action: 'Apply +4% price increase to USB-C Hub',
+    },
+    {
+      rank: 5,
+      title: 'Air Purifier Demand from Air Quality News',
+      category: 'Trend',
+      expectedValue: '₺28,000 in 14 days',
+      confidence: 74,
+      action: 'Increase stock and run targeted local campaign',
+    },
+  ],
+
+  recommendedActions: [
+    {
+      priority: 1,
+      action: 'Apply for ₺85,000 micro-credit offer (SoundPulse Earbuds)',
+      deadline: '2026-05-20',
+      expectedROI: 24,
+      status: 'pending',
+    },
+    {
+      priority: 2,
+      action: 'Place order for 450 units via air freight',
+      deadline: '2026-05-20',
+      expectedROI: null,
+      status: 'pending',
+    },
+    {
+      priority: 3,
+      action: 'Apply +7% price increase to wireless earbuds (₺1,299 → ₺1,389)',
+      deadline: '2026-05-19',
+      expectedROI: null,
+      status: 'pending',
+    },
+    {
+      priority: 4,
+      action: 'Lock in coffee supply forward contracts',
+      deadline: '2026-05-23',
+      expectedROI: null,
+      status: 'pending',
+    },
+    {
+      priority: 5,
+      action: 'Begin FX hedging for TRY/USD exposure',
+      deadline: '2026-05-22',
+      expectedROI: null,
+      status: 'pending',
+    },
+  ],
+
+  weeklyRevenueTrend: [
+    { day: 'Mon', revenue: 71200, target: 68000 },
+    { day: 'Tue', revenue: 74800, target: 70000 },
+    { day: 'Wed', revenue: 78100, target: 72000 },
+    { day: 'Thu', revenue: 81400, target: 74000 },
+    { day: 'Fri', revenue: 86200, target: 76000 },
+    { day: 'Sat', revenue: 77500, target: 72000 },
+    { day: 'Sun', revenue: 73600, target: 68000 },
+  ],
+
+  riskDistribution: [
+    { name: 'Inventory Risk', value: 38, color: '#ef4444' },
+    { name: 'Supply Chain', value: 28, color: '#f97316' },
+    { name: 'Pricing Risk', value: 18, color: '#eab308' },
+    { name: 'Currency Risk', value: 10, color: '#8b5cf6' },
+    { name: 'Market Risk', value: 6, color: '#6b7280' },
+  ],
+
+  opportunityDistribution: [
+    { name: 'Trend Opportunities', value: 42, color: '#06b6d4' },
+    { name: 'Pricing Uplift', value: 24, color: '#10b981' },
+    { name: 'Inventory Optimization', value: 20, color: '#3b82f6' },
+    { name: 'Fintech Leverage', value: 14, color: '#a855f7' },
+  ],
+
+  roiProjection: [
+    { month: 'May', current: 12.4, withActions: 18.2, market: 8.1 },
+    { month: 'Jun', current: 13.1, withActions: 22.5, market: 8.3 },
+    { month: 'Jul', current: 12.8, withActions: 24.1, market: 8.5 },
+    { month: 'Aug', current: 14.2, withActions: 23.8, market: 8.4 },
+    { month: 'Sep', current: 13.5, withActions: 21.2, market: 8.6 },
+    { month: 'Oct', current: 15.1, withActions: 25.4, market: 8.8 },
+  ],
+};
